@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100vh;
+        margin: 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .bg img {
+        height: 100vh;
+        width: 100vw;
+        object-fit: cover;
+        filter: blur(15px);
+        transition: filter 0.3s ease-in-out;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+      .container {
+        width: 40%;
+        height: 50%;
+        background-color: black;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+       
+        border-radius: 30px;
+      }
+      .container input {
+        padding: 10px 20px;
+        margin-bottom: 20px;
+        width: 80%;
+        outline: none;
+         border-radius: 20px;
+         height: 50px;
+      }
+      .container button {
+        padding: 10px 20px;
+        border: none;
+        background: cadetblue;
+        width: 150px;
+        color: #fff;
+        cursor: pointer;
+         border-radius: 30px;
+         font-size: 15px;
+      
+        }
+    </style>
+  </head>
+  <body>
+    <script>
+      const bgDiv = document.createElement("div");
+      bgDiv.classList.add("bg");
+
+      const bgImg = document.createElement("img");
+      bgImg.src = "./bg.jpg";
+      bgDiv.appendChild(bgImg);
+      document.body.appendChild(bgDiv);
+
+      const container = document.createElement("div");
+      container.classList.add("container");
+
+      const emailInput = document.createElement("input");
+      emailInput.type = "email";
+      emailInput.id = "email";
+      emailInput.placeholder = "Enter your mail";
+
+      const passwordInput = document.createElement("input");
+      passwordInput.type = "password";
+      passwordInput.id = "password";
+      passwordInput.placeholder = "Enter your password";
+
+      const button = document.createElement("button");
+      button.type = "submit";
+      button.textContent = "Submit";
+
+      container.appendChild(emailInput);
+      container.appendChild(passwordInput);
+      container.appendChild(button);
+      document.body.appendChild(container);
+
+      passwordInput.addEventListener("input", () => {
+        const length = passwordInput.value.length;
+        let blurValue = Math.max(15 - length * 2, 0); 
+        bgImg.style.filter = `blur(${blurValue}px)`;
+      });
+    </script>
+  </body>
+</html>
